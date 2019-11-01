@@ -20,11 +20,13 @@ public class Main {
     private static void dialog() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input your JSON: ");
-        String s = scanner.nextLine();
-        System.out.println("json:   " + s);
-        String s2 = encrypt.acceptData(s);
-        System.out.println("Encrypt JSON: " + s2);
-        System.out.println("Decrypt JSON: " + decrypt.acceptData(s2));
+        while (scanner.hasNext()) {
+            String s = scanner.nextLine();
+            System.out.println("json:   " + s);
+            String s2 = encrypt.acceptData(s);
+            System.out.println("Encrypt JSON: " + s2);
+            System.out.println("Decrypt JSON: " + decrypt.acceptData(s2));
+        }
     }
 
 }
