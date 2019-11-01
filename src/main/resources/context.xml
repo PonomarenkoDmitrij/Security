@@ -1,0 +1,27 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath*:property.properties"/>
+    <bean id="keyStorage" class="Main.KeyStorage">
+        <property name="securityKey" value="${key}"/>
+    </bean>
+    <bean name="storage" class="Main.Storage">
+        <property name="storage" ref="keyStorage"/>
+        <property name="cipher" value="AES/ECB/PKCS5Padding"/>
+        <property name="key" value="AES"/>
+    </bean>
+    <bean name="encrypt" class="Main.Encrypt">
+        <property name="storage" ref="storage"/>
+    </bean>
+    <bean name="decrypt" class="Main.Decrypt">
+        <property name="storage" ref="storage"/>
+    </bean>
+
+
+</beans>
